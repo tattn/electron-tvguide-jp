@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TV Guide</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+    <link rel="stylesheet" href="styles/index.css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="content"></div>
+
+      <script type="text/babel">
+      var TVGuide = React.createClass({
+          getInitialState: function(){
+            return {};
+          },
+          componentDidMount: function() {
+          },
+          render: function() {
+            return (
+              <div className="tv-guide">
+              <table>
+              <tbody>
+              <tr>
+              <td>1ch</td>
+              <td>2ch</td>
+              <td>4ch</td>
+              <td>5ch</td>
+              <td>6ch</td>
+              <td>7ch</td>
+              <td>8ch</td>
+              <td>9ch</td>
+              <td>12ch</td>
+              </tr>
+              </tbody>
+              </table>
+                <TVListings />
+              </div>
+            );
+          }
+        });
+
+        var TVListings = React.createClass({
+          render: function() {
+            return (
+              <div className="tv-listings">
+                <webview id="mainWebview"
+                  src="https://tv.yahoo.co.jp/listings/realtime/"
+                  autosize='on'
+                  preload="./../tvprogram.js"></webview>
+              </div>
+            );
+          }
+        });
+
+        ReactDOM.render(
+          <TVGuide />,
+          document.getElementById('content')
+        );
+      </script>
+    </div>
+
+    <script src="../menu.js"></script>
+  </body>
+</html>
